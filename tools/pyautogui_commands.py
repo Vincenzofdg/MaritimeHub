@@ -1,0 +1,3 @@
+
+def paste():
+    pass

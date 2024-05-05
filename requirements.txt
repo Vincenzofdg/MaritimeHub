@@ -1,0 +1,13 @@
+wheel
+black
+flake8
+python-dotenv==0.21.0
+selenium
+
+pyautogui
+pynput
+
+pyperclip
+schedule
+
+pyvirtualdisplay 
