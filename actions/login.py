@@ -1,7 +1,7 @@
 from tools.selenium_functions import name, xpath
 import web_elements.login as style
 from selenium.common.exceptions import TimeoutException
-
+from time import sleep
 
 def login(params):
     url, user, password, browser = [*params]
@@ -14,6 +14,8 @@ def login(params):
 
         password_input = xpath(style.password_input, browser)
         password_input.send_keys(password)
+
+        sleep(2)
 
         btn = xpath(style.btn, browser)
         btn.click()
