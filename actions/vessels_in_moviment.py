@@ -2,27 +2,33 @@ from tools.selenium_functions import xpath, tag_names
 import web_elements.vessels_in_moviment as style
 import time
 
+class Vessel_Status:
+    def __init__(self, name, agent):
+        self.name = name
+        self.agent = agent
+
 
 
 def vessels_in_moviment(browser):
     vessel_parent = xpath(style.vessel_array, browser)
-    # vessel_son = tag_names("tr", vessel_parent)
+    vessel_sons = tag_names("tr", vessel_parent)
 
-    # test = [elemento for elemento in vessel_son]
-    # test = len(elementos_filhos_tr)
 
-    # Encontre todos os elementos filhos
-    elementos_filhos = xpath("*", vessel_parent)
+    for index, vessel_son in enumerate(vessel_sons):
+        if index > 1:
+            vessel = Vessel_Status(name='', agent='')
+            all_info = tag_names("td", vessel_son)
+            for i, info in enumerate(all_info):
+                if i == 1:
+                    vessel.name = info.text
+                if i == 8:
+                    vessel.agent = info.text
+            time.sleep(1)
 
-    # Itere sobre os elementos filhos
-    for elemento_filho in elementos_filhos:
-        # Faça algo com cada elemento filho, por exemplo, imprimir seu texto
-        print(elemento_filho)
+            # manda para o db
+            print(vessel.name)
+
 
 
 
     time.sleep(15)
-
-
-# /html/body/section[1]/div/div[3]/div/div[1]/div/div[1]/table/tbody
-# /html/body/section[1]/div/div[3]/div/div[1]/div/div[1]/table/tbody/tr[24]
