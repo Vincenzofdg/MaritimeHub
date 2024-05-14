@@ -10,4 +10,6 @@ pynput
 pyperclip
 schedule
 
-pyvirtualdisplay 
+pyvirtualdisplay
+
+pymysql
