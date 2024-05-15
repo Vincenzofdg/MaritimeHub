@@ -15,7 +15,7 @@ function Board() {
     }
     Job();
     
-    setInterval(Job, 2 * 60 * 1000)
+    setInterval(Job, 5 * 60 * 1000)
     
     }, []);
 
