@@ -12,11 +12,20 @@ class Vessel_Status:
         self.status = status
 
 
+def convert_to_hex(str):
+    values = str[4:-1].split(',')
+    r = int(values[0])
+    g = int(values[1])
+    b = int(values[2])
+
+    return "#{:02x}{:02x}{:02x}".format(r, g, b)
+
+
 def vessels_in_moviment(cursor, browser):
     current_date = datetime.now()
     date_formated = current_date.strftime("%d-%m-%Y - %H:%M:%S")
 
-    sql_query = "INSERT INTO vessels (name, date, local, status_rgb, updated) VALUES (%s, %s, %s, %s, %s)"
+    sql_query = "INSERT INTO vessels (name, date, local, status_color, updated) VALUES (%s, %s, %s, %s, %s)"
 
     vessel_parent = xpath(style.vessel_array, browser)
     vessel_sons = tag_names("tr", vessel_parent)
@@ -27,7 +36,7 @@ def vessels_in_moviment(cursor, browser):
         background_find_rule = r'background\s*:\s*([^;]+)'
 
         find_background_color = re.search(background_find_rule, vessel_son_style)
-
+        
         if index >= 1:
             vessel = Vessel_Status(
                 name = '', 
@@ -52,4 +61,6 @@ def vessels_in_moviment(cursor, browser):
 
             time.sleep(1)
 
-            cursor.execute(sql_query, [vessel.name, vessel.date, vessel.local, vessel.status, date_formated])
+            rgb_to_hex = convert_to_hex(vessel.status)
+
+            cursor.execute(sql_query, [vessel.name, vessel.date, vessel.local, rgb_to_hex, date_formated])

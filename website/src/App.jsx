@@ -1,38 +1,34 @@
 import { useState, useEffect } from "react";
-import mysql from "mysql";
+
+import Lable from "./Components/Lable";
+import Card from "./Components/VesselCard";
+
+import VesselDB from "./Services/Vessels";
+import StatusDB  from "./Services/Status";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [vessels, setVessels] = useState([]);
+  const [status, setStatus] = useState([]);
 
   useEffect(() => {
-    // Configuração da conexão
-    const connection = mysql.createConnection({
-      host: "srv1083.hstgr.io",
-      user: "u954605081_gaspar_dev",
-      password: "B9t5qrpj5213*",
-      database: "u954605081_gaspar_vessels"
-    });
+    async function Job() {
+      const dataVessel = await VesselDB();
+      const dataStatus = await StatusDB();
 
-    // Realiza a consulta
-    connection.connect();
-    connection.query("SELECT * FROM vessels", function (error, results, fields) {
-      if (error) {
-        console.error(error);
-      } else {
-        setData(results);
-      }
-    });
-    connection.end();
-  }, []);
+      setVessels(dataVessel);
+      setStatus(dataStatus);
+    }
+    Job();
+    }, []);
 
   return (
-    <div>
-      <h1>Resultados da consulta:</h1>
-      <ul>
-        {data.map((row, index) => (
-          <li key={index}>{JSON.stringify(row)}</li>
-        ))}
-      </ul>
+    <div className="board-container">
+      <Lable data={status} />
+      <div className="vessel-card-container">
+        {
+          vessels.map((vessel, i) => <Card key={"vessel-" + i} data={vessel} />)
+        }
+      </div>
     </div>
   );
 }
