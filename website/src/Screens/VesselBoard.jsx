@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 
-import Lable from "./Components/Lable";
-import Board from "./Board";
+import { Lable, Board } from  "../Components/VesselBoard";
+import StatusDB  from "../Services/Status";
+import "../Style/VesselBoard.css"
 
-import StatusDB  from "./Services/Status";
-
-function App() {
+function VesselBoard() {
   const [status, setStatus] = useState([]);
 
   useEffect(() => {
@@ -24,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default VesselBoard;
