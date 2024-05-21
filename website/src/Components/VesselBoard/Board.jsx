@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import Card from "./Card";
+import {MainVessel as Card} from "../Cards";
 import VesselDB from "../../Services/Vessels";
 
 function Board() {

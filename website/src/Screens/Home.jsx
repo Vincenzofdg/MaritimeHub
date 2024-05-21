@@ -1,12 +1,13 @@
 
-import { Header, Vessels } from "../Components/Home";
+import { Header, UsersVessels, DynamicVesselStatus} from "../Components/Home";
 import "../Style/Home.css";
 
 function Home() {
   return(
     <div>
       <Header />
-      <Vessels />
+      <UsersVessels />
+      <DynamicVesselStatus />
     </div>
   )
 };

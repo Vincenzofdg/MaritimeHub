@@ -1,0 +1,21 @@
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.onloading {
+  animation: is-rotating 1s infinite;
+  border: 7px solid rgb(174, 174, 174);
+  border-radius: 50%;
+  border-top-color: #b42a25;
+  width: 50px;
+  height: 50px;
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}

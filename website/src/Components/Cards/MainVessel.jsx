@@ -1,4 +1,4 @@
-function Card({data}) {
+function MainVessel({data}) {
   const { name, date, local, status_color } = data;
 
   return (
@@ -14,4 +14,4 @@ function Card({data}) {
   )
 }
 
-export default Card;
+export default MainVessel;

@@ -1,0 +1,35 @@
+.c-vessels-section {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.c-vessels-card-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: #708090;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.c-vessels-card-user {
+  cursor: pointer;
+  background-color: #36454F;
+  margin: 5px;
+  width: 80px;
+  border-radius: 10px;
+}
+
+#c-vessels-card-user {
+  text-align: center;
+  font-weight: 600;
+}
+
+.c-vessels-card-user:hover {
+  transform: scale(1.03);
+}
+
+.c-vessel-card-user-add {
+  margin-left: 30px;
+  background-color: #242424;
+}

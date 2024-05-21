@@ -22,8 +22,6 @@ function Header() {
           <img id="menu-action-icon" src={VesselImage} alt="Vessel" />
           <p id="menu-action-text">Vessels</p>
         </div>
-      </div>
-      <div className="home-user-actions-container">
         <div className="menu-action-container">
           <img id="menu-action-icon" src={OKTBImage} alt="Vessel" />
           <p id="menu-action-text">OKTB</p>

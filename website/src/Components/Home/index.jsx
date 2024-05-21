@@ -1,7 +1,9 @@
 import Header from "./Header";
-import Vessels from "./Vessels";
+import UsersVessels from "./UsersVessels";
+import DynamicVesselStatus from "./DynamicVesselStatus";
 
 export {
   Header,
-  Vessels
+  UsersVessels,
+  DynamicVesselStatus
 }
