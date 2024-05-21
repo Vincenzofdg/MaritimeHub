@@ -20,7 +20,7 @@ setting.add_argument("--headless")
 
 browser = webdriver.Firefox(options=setting)
 
-browser = webdriver.Firefox()
+# browser = webdriver.Firefox()
 
 env = dotenv_values(".env")
 
