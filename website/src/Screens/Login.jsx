@@ -2,22 +2,45 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Global } from "../Context";
 
-
 import "../Style/Login.css";
 import Loader from "../Components/Loader";
-
 import ShipImage from "../Assets/login_ship.png";
+
+import getToken from "../Services/Login";
+import { getUserByName } from "../Services/User";
 
 
 function LoginPage() {
-  const { user } = useContext(Global);
+  const { user, setUser, setToken } = useContext(Global);
   const [loginInfo, setLoginInfo] = useState({username: "", password: ""});
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = async () => {
+    const {exists, ...userData} = await getToken(loginInfo);
+
+    if (!exists) {
+      setLoginInfo(p => ({...p, password: ""}))
+      return;
+    }
+
     setLoader(true);
+
+    const {token, name} = userData;
+    setToken(token);
+
+    const getUserInfo = await getUserByName(name, token);
+
+    if (getUserInfo.length === 0) {
+      setLoginInfo(p => ({...p, password: ""}));
+      setLoader(false);
+      return;
+    }
+
+    setUser(getUserInfo)
+
     navigate("/home");
+
     setLoader(false);
   }
 

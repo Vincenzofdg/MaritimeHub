@@ -2,7 +2,15 @@ function MainVessel({data}) {
   const { name, date, local, status_color } = data;
 
   return (
-    <div className="vessel-container" style={{backgroundColor: status_color}}>
+    <div
+      className={`vessel-container ${ status_color === "#00bfff" && "vessel-card-attention"}`}
+      style={
+        {
+          backgroundColor: status_color,
+          borderColor: status_color
+        }
+      }
+    >
       <p id="vessel-name">{name}</p>
       <p id="vessel-place">Local: {local}</p>
       <div className="vessel-date-container">

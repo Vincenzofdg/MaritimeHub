@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { Global } from "../../Context";
 import { useNavigate } from "react-router-dom";
 
 import UserImage from "../../Assets/no_user.png";
@@ -6,6 +8,7 @@ import OKTBImage from "../../Assets/oktb.png";
 import DEPOMImage from "../../Assets/depom.png";
 
 function Header() {
+  const { user: { name, vessels } } = useContext(Global);
   const navigate = useNavigate();
 
   return (
@@ -14,8 +17,8 @@ function Header() {
         <img className="home-user-image" src={UserImage} alt="Unknow User" />
       </div>
       <div className="home-user-info-container">
-        <p id="home-user-name">Fabricio dos Santos</p>
-        <p id="home-user-name">Navios: 00</p>
+        <p id="home-user-name">{name}</p>
+        <p id="home-user-name">{vessels > 0 ? "Vessels: " + vessels : "no vessel"}</p>
       </div>
       <div className="home-user-actions-container">
         <div className="menu-action-container" onClick={() => navigate("/vessel-board")}>

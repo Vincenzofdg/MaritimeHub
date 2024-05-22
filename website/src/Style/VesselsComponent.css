@@ -33,3 +33,13 @@
   margin-left: 30px;
   background-color: #242424;
 }
+
+.c-vesssel-empty-container {
+  justify-content: center;
+  background-color: transparent;
+}
+
+.c-vesssel-empty {
+  background-color: #36454F;
+  width: 20%;
+}

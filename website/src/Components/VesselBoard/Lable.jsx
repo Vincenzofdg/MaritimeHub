@@ -7,7 +7,7 @@ function Lable({data}) {
 
   return (
     <div className="menu-lable-container">
-      <img id="go-back-arrow" src={ArrowImage} alt="Go Back" />
+      {/* <img id="go-back-arrow" src={ArrowImage} alt="Go Back" /> */}
       {
         data.map((elem, i) => {
           const { text_value, color_hex } = elem;

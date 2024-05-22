@@ -1,6 +1,6 @@
 import api from "./api";
 
-const URL = '/status'
+const URL = 'vessel-bot/status'
 
 const getCurrentStatusLable = async () => {
   try {

@@ -1,12 +1,14 @@
 import axios from 'axios';
 
-const {url, prefix} = {
+const {url, prefix, dev} = {
   url: 'https://api.vincenzofdg.com.br',
-  prefix: "/main/vessel-bot"
+  dev: 'http://localhost:3000',
+  prefix: "/main"
 }
 
 const api = axios.create({
-  baseURL: url + prefix,
+  // baseURL: url + prefix,
+  baseURL: dev + prefix,
 });
 
 export default api;

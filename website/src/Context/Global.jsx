@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import {Global as Context} from ".";
 
 function Provider({ children }) {
-  const [user, setUser] = useState({username: "", password: ""});
+  const [token, setToken] = useState("")
+  const [user, setUser] = useState({});
 
   const obj = {
+    token, setToken,
     user, setUser
   };
 
