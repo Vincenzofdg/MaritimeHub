@@ -7,8 +7,8 @@ const {url, prefix, dev} = {
 }
 
 const api = axios.create({
-  baseURL: url + prefix,
-  // baseURL: dev + prefix,
+  // baseURL: url + prefix,
+  baseURL: dev + prefix,
 });
 
 export default api;
