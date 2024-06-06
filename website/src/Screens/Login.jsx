@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Global } from "../Context";
 
@@ -9,15 +9,26 @@ import ShipImage from "../Assets/login_ship.png";
 import getToken from "../Services/Login";
 import { getUserByName } from "../Services/User";
 
+import {storage} from "../Hooks";
 
 function LoginPage() {
-  const { user, setUser, setToken } = useContext(Global);
+  const { setUser, setToken } = useContext(Global);
   const [loginInfo, setLoginInfo] = useState({username: "", password: ""});
   const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getLocalToken = storage.get("token");
+
+    if (!!getLocalToken) {
+      setToken(getLocalToken);
+      navigate("/home");
+    }
+  }, []);
+
   const handleClick = async () => {
     const {exists, ...userData} = await getToken(loginInfo);
+    const {token, name} = userData;
 
     if (!exists) {
       setLoginInfo(p => ({...p, password: ""}))
@@ -26,18 +37,18 @@ function LoginPage() {
 
     setLoader(true);
 
-    const {token, name} = userData;
-    setToken(token);
-
     const getUserInfo = await getUserByName(name, token);
 
     if (getUserInfo.length === 0) {
       setLoginInfo(p => ({...p, password: ""}));
       setLoader(false);
       return;
-    }
+    };
 
-    setUser(getUserInfo)
+    setToken(token);
+    storage.save("token", token);
+
+    setUser(getUserInfo);
 
     navigate("/home");
 

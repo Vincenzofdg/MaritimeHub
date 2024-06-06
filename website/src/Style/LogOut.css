@@ -1,0 +1,11 @@
+.log-out-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 5px 0px 0px 10px;
+}
+
+.log-out-btn {
+  cursor: pointer;
+  width: 40px;
+}
