@@ -1,0 +1,120 @@
+.oktb-container-form {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.oktb-container-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px 40px 0px;
+}
+
+.oktb-header-agency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#oktb-title-agency {
+  margin-right: 20px;
+  font-size: 22px;
+}
+
+.oktb-header-agency-select {
+  border: none;
+  padding: 10px 10px 10px 15px;
+  background-color: transparent;
+  border-bottom: 1px solid whitesmoke;
+  font-size: 18px;
+}
+
+
+.oktb-container-crew {
+  width: 80%;
+}
+
+.oktb-container-crew-indice {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.oktb-crew-indice {
+  font-size: 22px;
+  width: calc(100%/3);
+}
+
+#oktb-crew-indice {
+  text-align: center;
+}
+
+.oktb-add-crew-member {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#oktb-add-crew-member {
+  margin-top: 15px;
+  width: 40px;
+  cursor: pointer;
+}
+
+#oktb-add-crew-member:hover {
+  transform: scale(1.03);
+}
+
+.oktb-container-flight-detail {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.oktb-flight-detail-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#oktb-flight-detail-title {
+  font-size: 22px;
+}
+
+#oktb-flight-detail-information {
+  font-size: 22px;
+  width: 85%;
+  height: 350px;
+  border: none;
+  background-color: #708090;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.oktb-container-result {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#oktb-result-btn {
+  margin-right: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#oktb-result-btn:hover {
+  transform: scale(1.02);
+}

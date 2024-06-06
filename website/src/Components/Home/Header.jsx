@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import UserImage from "../../Assets/no_user.png";
 import VesselImage from "../../Assets/vessel.png";
 import OKTBImage from "../../Assets/oktb.png";
-import DEPOMImage from "../../Assets/depom.png";
+// import DEPOMImage from "../../Assets/depom.png";
 
 function Header() {
   const { user: { name, vessels } } = useContext(Global);
@@ -25,14 +25,14 @@ function Header() {
           <img id="menu-action-icon" src={VesselImage} alt="Vessel" />
           <p id="menu-action-text">Vessels</p>
         </div>
-        <div className="menu-action-container">
+        <div className="menu-action-container" onClick={() => navigate("/oktb-generate")}>
           <img id="menu-action-icon" src={OKTBImage} alt="Vessel" />
           <p id="menu-action-text">OKTB</p>
         </div>
-        <div className="menu-action-container">
+        {/* <div className="menu-action-container">
           <img id="menu-action-icon" src={DEPOMImage} alt="Vessel" />
           <p id="menu-action-text">DEPOM</p>
-        </div>
+        </div> */}
       </div>
     </div>
   )
