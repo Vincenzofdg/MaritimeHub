@@ -1,31 +1,65 @@
 import { jsPDF } from 'jspdf';
 
-import TemplateJSON from "./Data/OKTB.json";
+import MainTemplate from "./Data/OKTB";
+import { CurrentDate } from "../Hooks"
 
 
 const OKTB = (data) => {
-  const docTitle = Object.keys(data.crew).length === 1 ? data.crew["p1"].Name : `${Object.keys(data.crew).length} TRIPs`;
+  const docTitle = Object.keys(data.crew).length === 1 ? data.crew["p1"].Name : `${Object.keys(data.crew).length} TRIPS`;
+  const { header, title, textBlock } = MainTemplate();
+  
   const doc = new jsPDF();
-  const pageWidth = doc.internal.pageSize.getWidth();
-
-
   doc.setFont('times');
 
+  // Initial Y position
   const x = 10;
-  let y = 10; // Initial Y position
+  let y = 15;
 
   try {
     doc.setFontSize(22)
-    doc.text("MAERSK", 95, y);
-
+    doc.setFont("helvetica", "bold");
+    doc.text(data.template.toUpperCase(), 95, y);
 
     // Header
     doc.setFontSize(11)
-    const text = TemplateJSON.header;
-    doc.text(text[0], 75, y += 15);
-    doc.text(text[1], 15, y += 5);
-    doc.text(text[2], 15, y += 5);
-    doc.text(text[3], 75, y += 5);
+    doc.setFont("helvetica", "normal")
+    doc.text(header[0], 75, y += 15);
+    doc.text(header[1], 15, y += 5);
+    doc.text(header[2], 15, y += 5);
+    doc.text(header[3], 75, y += 5);
+
+    // Title
+    doc.setFontSize(16)
+    doc.setFont("helvetica", "bolditalic");
+    doc.setLineWidth(0.5);
+    doc.text(title[0], 55, y += 15);
+    doc.line(55, y + 0.5, 153, y + 0.5);
+    doc.text(title[1], 55, y += 6);
+    doc.line(55, y + 0.5, 155, y + 0.5);
+
+    // Current Date
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(11);
+    doc.text(CurrentDate(), 160, y += 10);
+
+    // English Text Block
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "bold");
+    doc.text(textBlock[0].title, x, y += 5);
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(11);
+    doc.text(textBlock[0].content, x, y += 8);
+
+    // Port Text Block
+    doc.setFontSize(12)
+    doc.setFont("helvetica", "bold");
+    doc.text(textBlock[1].title, x, y += 20);
+    doc.setFont("helvetica", "normal")
+    doc.setFontSize(11);
+    doc.text(textBlock[1].content, x, y += 8);
+
+    // Port Text Block
+
 
   
     // Save the PDF
