@@ -25,7 +25,11 @@ const oktbMain = () => {
           ${SHIP} Providenciaremos assistência e liberação junto à Imigração brasileira e
           Alfândega assim como transporte para a(s) seguinte(s) pessoa(s):`
       }
-    ]
+    ],
+    joiners: {
+      title: "Personal details of joiners:",
+      tableMenu: ["Name", "Nationality", "D.O.B.", "Document"]
+    }
   }
 }
 
