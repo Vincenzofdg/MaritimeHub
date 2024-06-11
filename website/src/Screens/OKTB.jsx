@@ -6,16 +6,17 @@ import PDF from "../Templates/Maersk";
 
 import "../Style/OKTB.css"
 import PlusImg from "../Assets/plus.png";
+import MinusImg from "../Assets/minus.png";
 
 function OKTB() {
   const navigate = useNavigate();
   const [forms, setForms] = useState({
     crew: {
         p1: {
-          Name: '',
-          Nationality: '',
-          BirthDate: '',
-          Document: ''
+          Name: "",
+          Nationality: "",
+          BirthDate: "",
+          Document: ""
         }
       }
     }
@@ -24,6 +25,12 @@ function OKTB() {
   const indice =["Name", "Nationality", "Birth Date", "Document"];
 
   const crewInputRow = (count) => {
+    const inputType = {
+      Name: "text",
+      Nationality: "text",
+      BirthDate: "date",
+      Document: "text"
+    }
     
     return (
       <div className="oktb-container-crew-indice" key={count + "oktb-row"}>
@@ -35,7 +42,7 @@ function OKTB() {
               <input 
                 key={count + "oktb-column-" + (i + 1) }
                 className="oktb-crew-indice"
-                type="text"
+                type={inputType[formatedKey]}
                 value={forms.crew[`p${count}`][formatedKey]}
                 onChange={({target: {value}}) => setForms(pastValues => ({
                   ...pastValues,
@@ -70,6 +77,23 @@ function OKTB() {
       }
     }));
     setCrewCount(p => p + 1)
+  };
+
+  const handleDeleteRow = () => {
+    const keys = Object.keys(forms.crew);
+    
+    const newObj = [...Object.values(forms.crew)].reduce((acc, cur, i) => {
+      if (i === keys.length - 1) return acc;
+      acc = {
+        ...acc,
+        [keys[i]]: { ...cur }
+      }
+
+      return acc;
+    }, {});
+
+    setForms(p => ({...p, crew: newObj}));
+    setCrewCount(p => p - 1)
   };
 
   const handlePDF = () => {
@@ -107,18 +131,28 @@ function OKTB() {
         </div>
           {[...Array.from({length: crewCount})].map((_e, i) => crewInputRow(i + 1))}
           <div className="oktb-add-crew-member">
-            <img
-              src={PlusImg}
-              id="oktb-add-crew-member"
-              alt="Add Crew Member"
-              onClick={handleAddRow}
-            />
+            { crewCount <= 4 && (
+              <img
+                src={PlusImg}
+                id="oktb-add-crew-member"
+                alt="Add Crew Member"
+                onClick={handleAddRow}
+              />
+            )}
+            { crewCount >= 2 && (
+              <img
+                src={MinusImg}
+                id="oktb-add-crew-member"
+                alt="Add Crew Member"
+                onClick={handleDeleteRow}
+              />
+            )}
           </div>
       </div>
 
       <div className="oktb-container-flight-detail">
           <div className="oktb-flight-detail-title">
-            <p id="oktb-flight-detail-title">Flight Detail:</p>
+            <p id="oktb-flight-detail-title">Flight Details:</p>
           </div>
           <textarea
             id="oktb-flight-detail-information"

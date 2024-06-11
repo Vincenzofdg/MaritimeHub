@@ -29,7 +29,8 @@ const oktbMain = () => {
     joiners: {
       title: "Personal details of joiners:",
       tableMenu: ["Name", "Nationality", "D.O.B.", "Document"]
-    }
+    },
+    flightDetails: "Flight Details:"
   }
 }
 
